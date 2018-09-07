@@ -2,9 +2,9 @@
 
 source config.sh
 
-DOCKERNAME=mobius-${USER}
+DOCKERNAME=mobius-${HOSTUSER}
 DOCKER=nungdo/mobius-docker:latest
-NETNAME=vnet-${USER}
+NETNAME=vnet-${HOSTUSER}
 
 case "$1" in
     install)
@@ -17,7 +17,7 @@ case "$1" in
             --network ${NETNAME} \
             --name ${DOCKERNAME} \
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
-            --env MOBIUS_DB_HOST=mysql-${USER} \
+            --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
             ${DOCKER} /bin/install-mobius-db.sh
     ;;
     start)
@@ -30,7 +30,7 @@ case "$1" in
             --network ${NETNAME} \
             --name ${DOCKERNAME} \
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
-            --env MOBIUS_DB_HOST=mysql-${USER} \
+            --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
             --publish ${MOBIUS_PORT}:7579 \
             ${DOCKER} node mobius.js
     ;;
@@ -44,7 +44,7 @@ case "$1" in
             --network ${NETNAME} \
             --name ${DOCKERNAME} \
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
-            --env MOBIUS_DB_HOST=mysql-${USER} \
+            --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
             --publish ${MOBIUS_PORT}:7579 \
             ${DOCKER} bash
     ;;

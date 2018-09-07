@@ -2,8 +2,8 @@
 
 source config.sh
 
-DOCKERNAME=mysql-${USER}
-NETNAME=vnet-${USER}
+DOCKERNAME=mysql-${HOSTUSER}
+NETNAME=vnet-${HOSTUSER}
 
 case "$1" in
     start)
@@ -18,7 +18,6 @@ case "$1" in
             --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
             --network ${NETNAME} \
             --name ${DOCKERNAME} \
-            --publish 3306:3306/tcp \
             mysql:5.7
     ;;
     stop)

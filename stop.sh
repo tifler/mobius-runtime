@@ -2,6 +2,6 @@
 
 source config.sh
 
-docker stop mysql-${USER} mobius-${USER}
-docker rm mysql-${USER} mobius-${USER}
-docker network rm vnet-${USER}
+docker stop mysql-${HOSTUSER} mobius-${HOSTUSER}
+docker rm mysql-${HOSTUSER} mobius-${HOSTUSER}
+docker network rm vnet-${HOSTUSER}
