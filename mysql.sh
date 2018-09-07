@@ -13,6 +13,7 @@ case "$1" in
         echo -n "Starting docker: "
         docker \
             run \
+            --rm \
             --detach \
             --volume ${MYSQL_DB_HOST_PATH}:/var/lib/mysql \
             --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
