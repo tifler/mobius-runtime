@@ -7,15 +7,15 @@
 MYSQL_ROOT_PASSWORD=mobiustest
 MYSQL_DB_HOST_PATH=$PWD/db/
 ```
-1. Start mysql
+2. Start mysql
 ```
 ./mysql.sh start
 ```
-1. Install database
+3. Install database
 ```
 ./mobius.sh install
 ```
-1. Start Mobius
+4. Start Mobius
 ```
 ./mobius.sh start
 ```
