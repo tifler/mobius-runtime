@@ -18,6 +18,7 @@ case "$1" in
             --volume ${MYSQL_DB_HOST_PATH}:/var/lib/mysql \
             --env MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD} \
             --network ${NETNAME} \
+            --publish ${MYSQL_EXPOSE_PORT}:3306 \
             --name ${DOCKERNAME} \
             mysql:5.7
     ;;
