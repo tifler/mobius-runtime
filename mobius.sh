@@ -3,6 +3,7 @@
 source config.sh
 
 DOCKERNAME=mobius-${USER}
+DOCKER=nungdo/mobius-docker:latest
 NETNAME=vnet-${USER}
 
 case "$1" in
@@ -17,7 +18,7 @@ case "$1" in
             --name ${DOCKERNAME} \
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
             --env MOBIUS_DB_HOST=mysql-${USER} \
-            mobius:0.1 /bin/install-mobius-db.sh
+            ${DOCKER} /bin/install-mobius-db.sh
     ;;
     start)
         echo -n "Creating private network: "
@@ -30,8 +31,22 @@ case "$1" in
             --name ${DOCKERNAME} \
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
             --env MOBIUS_DB_HOST=mysql-${USER} \
-            --publish 7579:7579 \
-            mobius:0.1 bash
+            --publish ${MOBIUS_PORT}:7579 \
+            ${DOCKER} node mobius.js
+    ;;
+    bash)
+        echo -n "Creating private network: "
+        docker network create ${NETNAME}
+        echo -n "Starting docker: "
+        docker \
+            run -it \
+            --rm \
+            --network ${NETNAME} \
+            --name ${DOCKERNAME} \
+            --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
+            --env MOBIUS_DB_HOST=mysql-${USER} \
+            --publish ${MOBIUS_PORT}:7579 \
+            ${DOCKER} bash
     ;;
     stop)
         echo -n "Stopping docker: "
