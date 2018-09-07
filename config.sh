@@ -1,0 +1,3 @@
+
+MYSQL_ROOT_PASSWORD=mobiustest
+MYSQL_DB_HOST_PATH=$PWD/db/
