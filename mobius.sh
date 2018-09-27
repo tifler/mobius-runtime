@@ -4,6 +4,7 @@ source config.sh
 
 DOCKERNAME=mobius-${HOSTUSER}
 DOCKER=nungdo/mobius-docker:latest
+#DOCKER=mobius:0.1
 NETNAME=vnet-${HOSTUSER}
 
 case "$1" in
@@ -34,8 +35,8 @@ case "$1" in
             --env MOBIUS_DB_PORT=${MYSQL_EXPOSE_PORT} \
             --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
             --publish ${MOBIUS_HTTP_PORT}:7579 \
-            --publish ${MOBIUS_MQTT_PORT}:7578 \
-            ${DOCKER} node mobius.js
+            --publish ${MOBIUS_MQTT_PORT}:1883 \
+            ${DOCKER} bash /bin/start-mobius.sh
     ;;
     bash)
         echo -n "Creating private network: "
@@ -50,7 +51,7 @@ case "$1" in
             --env MOBIUS_DB_PORT=${MYSQL_EXPOSE_PORT} \
             --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
             --publish ${MOBIUS_HTTP_PORT}:7579 \
-            --publish ${MOBIUS_MQTT_PORT}:7578 \
+            --publish ${MOBIUS_MQTT_PORT}:1883 \
             ${DOCKER} bash
     ;;
     stop)
