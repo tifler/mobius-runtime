@@ -33,7 +33,8 @@ case "$1" in
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
             --env MOBIUS_DB_PORT=${MYSQL_EXPOSE_PORT} \
             --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
-            --publish ${MOBIUS_PORT}:7579 \
+            --publish ${MOBIUS_HTTP_PORT}:7579 \
+            --publish ${MOBIUS_MQTT_PORT}:7578 \
             ${DOCKER} node mobius.js
     ;;
     bash)
@@ -48,7 +49,8 @@ case "$1" in
             --env MOBIUS_DB_PASS=${MYSQL_ROOT_PASSWORD} \
             --env MOBIUS_DB_PORT=${MYSQL_EXPOSE_PORT} \
             --env MOBIUS_DB_HOST=mysql-${HOSTUSER} \
-            --publish ${MOBIUS_PORT}:7579 \
+            --publish ${MOBIUS_HTTP_PORT}:7579 \
+            --publish ${MOBIUS_MQTT_PORT}:7578 \
             ${DOCKER} bash
     ;;
     stop)
